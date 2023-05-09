@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-    const board = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+    const board = ['', '', '', '', '', '', '', '', ''];
     const updateBoard = (index, value) => {
         board[index] = value
     }
@@ -12,11 +12,12 @@ const populateBoard = (() => {
         square.classList.add('square');
         square.innerText = gameBoard.board[i];
         square.addEventListener('click', () => {
-            const Player = 'X';
-            gameBoard.updateBoard(i, Player);
-            square.innerText = Player;
+            const player = 'X';
+            gameBoard.updateBoard(i, player);
+            square.innerText = player;
         })
-        document.body.appendChild(square);
+        let gameContainer = document.querySelector('.gameContainer');
+        gameContainer.appendChild(square);
     }
 })();
 console.log(gameBoard.board.length)
