@@ -1,10 +1,26 @@
 const gameBoard = (() => {
     const board = ['', '', '', '', '', '', '', '', ''];
+
     const updateBoard = (index, value) => {
         board[index] = value
     }
-    return { board, updateBoard };
+
+    const resetBoard = () => {
+        for (let i = 0; i < gameBoard.board.length; i++) {
+            gameBoard.board[i] = '';
+        }
+        const squares = document.querySelectorAll('.square');
+        for (let i = 0; i < squares.length; i++) {
+            squares[i].innerText = '';
+        }
+
+    }
+    return { board, updateBoard, resetBoard };
 })();
+
+function resetGame() {
+    gameBoard.resetBoard();
+}
 
 const populateBoard = (() => {
     for (let i = 0; i < gameBoard.board.length; i++) {
