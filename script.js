@@ -6,8 +6,8 @@ const gameBoard = (() => {
     }
 
     const resetBoard = () => {
-        for (let i = 0; i < gameBoard.board.length; i++) {
-            gameBoard.board[i] = '';
+        for (let i = 0; i < board.length; i++) {
+            board[i] = '';
         }
         const squares = document.querySelectorAll('.square');
         for (let i = 0; i < squares.length; i++) {
