@@ -1,5 +1,21 @@
 const gameBoard = (() => {
     const board = ['', '', '', '', '', '', '', '', ''];
+    for (let i = 0; i < board.length; i++) {
+        const square = document.createElement("button");
+        square.classList.add('square');
+        square.innerText = board[i];
+        square.addEventListener('click', () => {
+            const player = 'X';
+            updateBoard(i, player);
+            square.innerText = player;
+        })
+        let gameContainer = document.querySelector('.gameContainer');
+        gameContainer.appendChild(square);
+    }
+
+    const getBoard = () => {
+        return board
+    }
 
     const updateBoard = (index, value) => {
         board[index] = value
@@ -15,25 +31,9 @@ const gameBoard = (() => {
         }
 
     }
-    return { board, updateBoard, resetBoard };
+    return { getBoard, updateBoard, resetBoard };
 })();
 
 function resetGame() {
     gameBoard.resetBoard();
 }
-
-const populateBoard = (() => {
-    for (let i = 0; i < gameBoard.board.length; i++) {
-        const square = document.createElement("button");
-        square.classList.add('square');
-        square.innerText = gameBoard.board[i];
-        square.addEventListener('click', () => {
-            const player = 'X';
-            gameBoard.updateBoard(i, player);
-            square.innerText = player;
-        })
-        let gameContainer = document.querySelector('.gameContainer');
-        gameContainer.appendChild(square);
-    }
-})();
-console.log(gameBoard.board.length)
