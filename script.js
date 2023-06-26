@@ -4,11 +4,6 @@ const gameBoard = (() => {
         const square = document.createElement("button");
         square.classList.add('square');
         square.innerText = board[i];
-        square.addEventListener('click', () => {
-            const player = 'X';
-            updateBoard(i, player);
-            square.innerText = player;
-        })
         let gameContainer = document.querySelector('.gameContainer');
         gameContainer.appendChild(square);
     }
@@ -34,6 +29,68 @@ const gameBoard = (() => {
     return { getBoard, updateBoard, resetBoard };
 })();
 
-function resetGame() {
-    gameBoard.resetBoard();
-}
+// chooseYourCharacter
+
+const chooseYourCharacter = (() => {
+    let board = gameBoard.getBoard();
+    let playerSelection;
+    let computerSelection;
+
+    const getSelections = () => {
+        return { playerSelection, computerSelection};
+    }
+
+    const resetSelections = () => {
+        playerSelection = undefined;
+        computerSelection = undefined;
+    }
+
+    function disableBtns() {
+        const Btns = document.querySelectorAll('.selection');
+        Btns.forEach((btn) => {
+            btn.disabled = true;
+        })
+    }
+
+    function enableBtns() {
+        const Btns = document.querySelectorAll('.selection');
+        Btns.forEach((btn) => {
+            btn.disabled = false;
+        })
+    }
+
+    const selectionBtns = document.querySelectorAll('.selection');
+    selectionBtns.forEach((selectionBtn) => {
+        selectionBtn.addEventListener('click', () => {
+            if (selectionBtn.id === 'X') {
+                playerSelection = 'X'
+                computerSelection = '0';
+                console.log(playerSelection)
+            }
+            else {
+                playerSelection = 'O'
+                computerSelection = 'X';
+                console.log(playerSelection)
+            }
+            disableBtns();
+        })
+    })
+
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square, index) => {
+        square.addEventListener('click', () => {
+            if (playerSelection === undefined) { alert('Please Select X or O --(ツ)--') }
+            else {
+            square.innerText = playerSelection;
+            board[index] = playerSelection;}
+        })
+    })
+
+    return { getSelections, enableBtns, resetSelections, playerSelection, computerSelection }
+    })();
+
+    function resetGame() {
+        gameBoard.resetBoard()
+        chooseYourCharacter.enableBtns();
+        chooseYourCharacter.resetSelections();
+    }
