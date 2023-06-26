@@ -37,7 +37,7 @@ const chooseYourCharacter = (() => {
     let computerSelection;
 
     const getSelections = () => {
-        return { playerSelection, computerSelection};
+        return { playerSelection, computerSelection };
     }
 
     const resetSelections = () => {
@@ -72,17 +72,22 @@ const chooseYourCharacter = (() => {
                 computerSelection = 'X';
                 console.log(playerSelection)
             }
-            disableBtns();
+            //disableBtns();
         })
     })
 
     const squares = document.querySelectorAll('.square');
     squares.forEach((square, index) => {
         square.addEventListener('click', () => {
-            if (playerSelection === undefined) { alert('Please Select X or O --(ツ)--') }
-            else {
-            square.innerText = playerSelection;
-            board[index] = playerSelection;}
+            if (playerSelection === undefined ) 
+                { alert('Please Select X or O --(ツ)--') }
+            else if (square.innerText !== '')
+                { return }
+            else 
+                {
+                square.innerText = playerSelection;
+                board[index] = playerSelection;
+                }
         })
     })
 
