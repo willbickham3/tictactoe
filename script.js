@@ -1,3 +1,5 @@
+// gameBoard handles initializing the board as well as setting up 
+
 const gameBoard = (() => {
     const board = ['', '', '', '', '', '', '', '', ''];
     for (let i = 0; i < board.length; i++) {
@@ -13,7 +15,7 @@ const gameBoard = (() => {
     }
 
     const updateBoard = (index, value) => {
-        board[index] = value
+        board[index] = value;
     }
 
     const resetBoard = () => {
@@ -29,7 +31,7 @@ const gameBoard = (() => {
     return { getBoard, updateBoard, resetBoard };
 })();
 
-// chooseYourCharacter
+// chooseYourCharacter - Allows for user to select a symbol (X or O) to play tic tac toe; handles symbol button enable/disable; handles click events for the squares so that the squares are filled with either X or O
 
 const chooseYourCharacter = (() => {
     let board = gameBoard.getBoard();
@@ -85,8 +87,8 @@ const chooseYourCharacter = (() => {
                 { return }
             else 
                 {
-                square.innerText = playerSelection;
-                board[index] = playerSelection;
+                //square.innerText = playerSelection;
+                gameBoard.updateBoard(index, playerSelection);
                 }
         })
     })
