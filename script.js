@@ -66,17 +66,34 @@ const chooseYourCharacter = (() => {
         selectionBtn.addEventListener('click', () => {
             if (selectionBtn.id === 'X') {
                 playerSelection = 'X'
-                computerSelection = '0';
+                computerSelection = 'O';
                 console.log(playerSelection)
             }
             else {
                 playerSelection = 'O'
                 computerSelection = 'X';
+                computerPlayer(computerSelection);
                 console.log(playerSelection)
             }
-            //disableBtns();
+            disableBtns();
         })
     })
+
+    const computerPlayer = (computerSelection) => {
+        let randomIndex;
+        const emptyStringAvailable = board.some((cell) => cell === '');
+
+        if(!emptyStringAvailable) {
+            return
+        }
+
+        do {
+            randomIndex = Math.floor(Math.random() * squares.length)
+        } while ( board[randomIndex] !=='' );
+        gameBoard.updateBoard(randomIndex, computerSelection)
+        squares[randomIndex].innerText = computerSelection;
+        return
+    }
 
     const squares = document.querySelectorAll('.square');
     squares.forEach((square, index) => {
@@ -84,11 +101,19 @@ const chooseYourCharacter = (() => {
             if (playerSelection === undefined ) 
                 { alert('Please Select X or O --(ツ)--') }
             else if (square.innerText !== '')
-                { return }
-            else 
+                { alert('Someone (or something!!) is already there!') }
+            else
                 {
-                //square.innerText = playerSelection;
-                gameBoard.updateBoard(index, playerSelection);
+                    if (playerSelection == 'X') {
+                        square.innerText = playerSelection;
+                        gameBoard.updateBoard(index, playerSelection);
+                        computerPlayer(computerSelection);
+                    }
+                    else {
+                        square.innerText = playerSelection;
+                        gameBoard.updateBoard(index, playerSelection)
+                        computerPlayer(computerSelection);
+                    }
                 }
         })
     })
