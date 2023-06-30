@@ -6,6 +6,7 @@
 
 body {
     font-family:sans-serif;
+    background-image: url(images/matrix.gif);
 }
 
 .gameContainer {
