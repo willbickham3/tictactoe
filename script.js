@@ -61,8 +61,7 @@ const checkForWin = (board) => {
             let value3 = board[index3];
         
         if (value1 == value2 && value1 == value3 && value1 !== '') {
-            console.log('Winner!')
-            resetGame();
+            return true
         }
     }   
             return false
@@ -152,7 +151,12 @@ const chooseYourCharacter = (() => {
                         computerPlayer(computerSelection);
                     }
                 }
-                checkForWin(board);
+                if (checkForWin(board)) {
+                    console.log('Winner!')
+                }
+                else {
+                    return
+                }
         })
     })
 
