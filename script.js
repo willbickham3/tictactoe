@@ -2,13 +2,6 @@
 
 const gameBoard = (() => {
     const board = ['', '', '', '', '', '', '', '', ''];
-    for (let i = 0; i < board.length; i++) {
-        const square = document.createElement("button");
-        square.classList.add('square');
-        square.innerText = board[i];
-        let gameContainer = document.querySelector('.gameContainer');
-        gameContainer.appendChild(square);
-    }
 
     const getBoard = () => {
         return board
@@ -29,6 +22,19 @@ const gameBoard = (() => {
 
     }
     return { getBoard, updateBoard, resetBoard };
+})();
+
+// Board Creation
+
+const initializeBoard = (() => {
+    let board = gameBoard.getBoard()
+    for (let i = 0; i < board.length; i++) {
+        const square = document.createElement("button");
+        square.classList.add('square');
+        square.innerText = board[i];
+        let gameContainer = document.querySelector('.gameContainer');
+        gameContainer.appendChild(square);
+    }
 })();
 
 // Win Conditions
