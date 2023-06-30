@@ -31,6 +31,35 @@ const gameBoard = (() => {
     return { getBoard, updateBoard, resetBoard };
 })();
 
+const checkForWin = (board) => {
+    const winConditions = [
+        // Row
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        // Column
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        // Diagonal
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+        for (let condition of winConditions) {
+            let [index1, index2, index3] = condition;
+            let value1 = board[index1];
+            let value2 = board[index2];
+            let value3 = board[index3];
+        
+        if (value1 == value2 && value1 == value3 && value1 !== '') {
+            console.log('Winner!')
+            resetGame();
+        }
+    }   
+            return false
+};
+
 // chooseYourCharacter - Allows for user to select a symbol (X or O) to play tic tac toe; handles symbol button enable/disable; handles click events for the squares so that the squares are filled with either X or O
 
 const chooseYourCharacter = (() => {
@@ -115,6 +144,7 @@ const chooseYourCharacter = (() => {
                         computerPlayer(computerSelection);
                     }
                 }
+                checkForWin(board);
         })
     })
 
