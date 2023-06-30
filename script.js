@@ -31,6 +31,8 @@ const gameBoard = (() => {
     return { getBoard, updateBoard, resetBoard };
 })();
 
+// Win Conditions
+
 const checkForWin = (board) => {
     const winConditions = [
         // Row
@@ -150,6 +152,8 @@ const chooseYourCharacter = (() => {
 
     return { getSelections, enableBtns, resetSelections, playerSelection, computerSelection }
     })();
+
+    // Functionality for Reset Button
 
     function resetGame() {
         gameBoard.resetBoard()
