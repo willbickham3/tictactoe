@@ -108,7 +108,7 @@ const chooseYourCharacter = (() => {
             else {
                 playerSelection = 'O'
                 computerSelection = 'X';
-                // computerPlayer(computerSelection);
+                computerPlayer(computerSelection);
                 console.log(playerSelection)
             }
             disableBtns();
@@ -143,22 +143,45 @@ const chooseYourCharacter = (() => {
                     if (playerSelection == 'X') {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection);
-                        //computerPlayer(computerSelection);
-                        playerSelection = 'O';
+                        if (checkForWin(board)) {
+                            alert(`${playerSelection} has won!`)
+                        }
+                        else {
+                            //playerSelection = 'O';
+                            computerPlayer(computerSelection);
+                            if (checkForWin(board)) {
+                                console.log(`${computerSelection} has won!`)
+                            }
+                            else {
+                                //playerSelection = 'O';
+                                return
+                            }
+                        }
                     }
                     else {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection)
-                        //computerPlayer(computerSelection);
-                        playerSelection = 'X';
+                        if (checkForWin(board)) {
+                            setTimeout(function(){ alert(`${playerSelection} has won!`) }, 10);
+                        }
+                        else {
+                            computerPlayer(computerSelection);
+                            if (checkForWin(board)) {
+                               setTimeout(function(){ alert(`${computerSelection} has won!`) }, 10)
+                            }
+                            else {
+                                //playerSelection = 'X';
+                                return
+                            }
+                        }
                     }
                 }
-                if (checkForWin(board)) {
-                    console.log('Winner!')
-                }
-                else {
-                    return
-                }
+                // if (checkForWin(board)) {
+                //     console.log('Winner!')
+                // }
+                // else {
+                //     return
+                // }
         })
     })
 
