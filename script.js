@@ -108,7 +108,7 @@ const chooseYourCharacter = (() => {
             else {
                 playerSelection = 'O'
                 computerSelection = 'X';
-                computerPlayer(computerSelection);
+                // computerPlayer(computerSelection);
                 console.log(playerSelection)
             }
             disableBtns();
@@ -143,12 +143,14 @@ const chooseYourCharacter = (() => {
                     if (playerSelection == 'X') {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection);
-                        computerPlayer(computerSelection);
+                        //computerPlayer(computerSelection);
+                        playerSelection = 'O';
                     }
                     else {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection)
-                        computerPlayer(computerSelection);
+                        //computerPlayer(computerSelection);
+                        playerSelection = 'X';
                     }
                 }
                 if (checkForWin(board)) {
