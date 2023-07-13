@@ -144,13 +144,13 @@ const chooseYourCharacter = (() => {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection);
                         if (checkForWin(board)) {
-                            alert(`${playerSelection} has won!`)
+                            setTimeout(function(){ alert(`${playerSelection} has won!`) }, 10);
                         }
                         else {
                             //playerSelection = 'O';
                             computerPlayer(computerSelection);
                             if (checkForWin(board)) {
-                                console.log(`${computerSelection} has won!`)
+                                setTimeout(function(){ alert(`${computerSelection} has won!`) }, 10);
                             }
                             else {
                                 //playerSelection = 'O';
