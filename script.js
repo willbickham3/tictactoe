@@ -145,12 +145,14 @@ const chooseYourCharacter = (() => {
                         gameBoard.updateBoard(index, playerSelection);
                         if (checkForWin(board)) {
                             setTimeout(function(){ alert(`${playerSelection} has won!`) }, 10);
+                            setTimeout(function() {gameBoard.resetBoard()}, 20);
                         }
                         else {
                             //playerSelection = 'O';
                             computerPlayer(computerSelection);
                             if (checkForWin(board)) {
                                 setTimeout(function(){ alert(`${computerSelection} has won!`) }, 10);
+                                setTimeout(function() {gameBoard.resetBoard()}, 20);
                             }
                             else {
                                 //playerSelection = 'O';
@@ -163,11 +165,15 @@ const chooseYourCharacter = (() => {
                         gameBoard.updateBoard(index, playerSelection)
                         if (checkForWin(board)) {
                             setTimeout(function(){ alert(`${playerSelection} has won!`) }, 10);
+                            setTimeout(function() {gameBoard.resetBoard()}, 20);
+                            computerPlayer(computerSelection)
                         }
                         else {
                             computerPlayer(computerSelection);
                             if (checkForWin(board)) {
                                setTimeout(function(){ alert(`${computerSelection} has won!`) }, 10)
+                               setTimeout(function() {gameBoard.resetBoard()}, 20);
+                               computerPlayer(computerSelection);
                             }
                             else {
                                 //playerSelection = 'X';
