@@ -35,7 +35,7 @@ body {
 .selection {
     width: 75px;
     height: 75px;
-    background: none;
+    background: black;
     color: cyan;
     border: 1px solid cyan;
     font-size: 32px;
