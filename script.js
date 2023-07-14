@@ -144,15 +144,17 @@ const chooseYourCharacter = (() => {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection);
                         if (checkForWin(board)) {
-                            setTimeout(function(){ alert(`${playerSelection} has won!`) }, 10);
-                            gameBoard.resetBoard()
+                            setTimeout(function(){ alert(`${computerSelection} has won!`);
+                            gameBoard.resetBoard()},
+                             10);
                         }
                         else {
                             //playerSelection = 'O';
                             computerPlayer(computerSelection);
                             if (checkForWin(board)) {
-                                setTimeout(function(){ alert(`${computerSelection} has won!`) }, 10);
-                                gameBoard.resetBoard()
+                                setTimeout(function(){ alert(`${computerSelection} has won!`);
+                                gameBoard.resetBoard()},
+                                 10);
                             }
                             else {
                                 //playerSelection = 'O';
@@ -164,15 +166,17 @@ const chooseYourCharacter = (() => {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection)
                         if (checkForWin(board)) {
-                            setTimeout(function(){ alert(`${playerSelection} has won!`) }, 10);
-                            gameBoard.resetBoard()
+                            setTimeout(function(){ alert(`${computerSelection} has won!`);
+                            gameBoard.resetBoard()},
+                             10);
                             computerPlayer(computerSelection)
                         }
                         else {
                             computerPlayer(computerSelection);
                             if (checkForWin(board)) {
-                               setTimeout(function(){ alert(`${computerSelection} has won!`) }, 10)
-                               gameBoard.resetBoard()
+                                setTimeout(function(){ alert(`${computerSelection} has won!`);
+                                gameBoard.resetBoard()},
+                                 10);
                                computerPlayer(computerSelection);
                             }
                             else {
