@@ -67,6 +67,59 @@ const checkForWin = (board) => {
             return false
 };
 
+
+// Computer player that takes the computer selection and populates the board randomly
+const computerPlayer = (computerSelection) => {
+    let randomIndex;
+    let board = gameBoard.getBoard();
+    const squares = document.querySelectorAll('.square');
+    const emptyStringAvailable = board.some((cell) => cell === '');
+
+    if(!emptyStringAvailable) {
+        return
+    }
+
+    do {
+        randomIndex = Math.floor(Math.random() * squares.length)
+    } while ( board[randomIndex] !=='' );
+    gameBoard.updateBoard(randomIndex, computerSelection)
+    squares[randomIndex].innerText = computerSelection;
+    return
+}
+
+// Returns certain alerts based on who wins based on what the player has selected and computer has selected
+
+const playerWin = (playerSelection) => {
+    if (playerSelection == 'O') {
+    const pcPlayer = chooseYourCharacter.getSelections();
+    let computerSelection = pcPlayer.computerSelection;
+    setTimeout(function(){ alert(`${playerSelection} has won!`);
+    gameBoard.resetBoard()
+    computerPlayer(computerSelection)},
+        10);
+    }
+    else {
+    setTimeout(function(){ alert(`${playerSelection} has won!`);
+    gameBoard.resetBoard()},
+        10);
+    }
+};
+
+const computerWin = (computerSelection) => {
+    if (computerSelection == 'X') {
+    setTimeout(function(){ alert(`${computerSelection} has won!`);
+    gameBoard.resetBoard()
+    computerPlayer(computerSelection)
+},
+     10);
+    }
+    else {
+        setTimeout(function(){ alert(`${computerSelection} has won!`);
+        gameBoard.resetBoard()},
+         10);
+    }
+}
+
 // chooseYourCharacter - Allows for user to select a symbol (X or O) to play tic tac toe; handles symbol button enable/disable; handles click events for the squares so that the squares are filled with either X or O
 
 const chooseYourCharacter = (() => {
@@ -115,22 +168,6 @@ const chooseYourCharacter = (() => {
         })
     })
 
-    const computerPlayer = (computerSelection) => {
-        let randomIndex;
-        const emptyStringAvailable = board.some((cell) => cell === '');
-
-        if(!emptyStringAvailable) {
-            return
-        }
-
-        do {
-            randomIndex = Math.floor(Math.random() * squares.length)
-        } while ( board[randomIndex] !=='' );
-        gameBoard.updateBoard(randomIndex, computerSelection)
-        squares[randomIndex].innerText = computerSelection;
-        return
-    }
-
     const squares = document.querySelectorAll('.square');
     squares.forEach((square, index) => {
         square.addEventListener('click', () => {
@@ -144,17 +181,13 @@ const chooseYourCharacter = (() => {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection);
                         if (checkForWin(board)) {
-                            setTimeout(function(){ alert(`${playerSelection} has won!`);
-                            gameBoard.resetBoard()},
-                             10);
+                            playerWin(playerSelection)
                         }
                         else {
                             //playerSelection = 'O';
                             computerPlayer(computerSelection);
                             if (checkForWin(board)) {
-                                setTimeout(function(){ alert(`${computerSelection} has won!`);
-                                gameBoard.resetBoard()},
-                                 10);
+                            computerWin(computerSelection)
                             }
                             else {
                                 //playerSelection = 'O';
@@ -166,18 +199,12 @@ const chooseYourCharacter = (() => {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection)
                         if (checkForWin(board)) {
-                            setTimeout(function(){ alert(`${playerSelection} has won!`);
-                            gameBoard.resetBoard()},
-                             10);
-                            computerPlayer(computerSelection)
+                            playerWin(playerSelection)
                         }
                         else {
                             computerPlayer(computerSelection);
                             if (checkForWin(board)) {
-                                setTimeout(function(){ alert(`${computerSelection} has won!`);
-                                gameBoard.resetBoard()},
-                                 10);
-                               computerPlayer(computerSelection);
+                                computerWin(computerSelection)
                             }
                             else {
                                 //playerSelection = 'X';
@@ -195,7 +222,7 @@ const chooseYourCharacter = (() => {
         })
     })
 
-    return { getSelections, enableBtns, resetSelections, playerSelection, computerSelection }
+    return { getSelections, enableBtns, resetSelections, playerSelection, computerSelection, computerPlayer }
     })();
 
     // Functionality for Reset Button
