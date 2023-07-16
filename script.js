@@ -21,7 +21,11 @@ const gameBoard = (() => {
         }
 
     }
-    return { getBoard, updateBoard, resetBoard };
+
+    const playerScore = 0;
+    const computerScore = 0;
+
+    return { getBoard, updateBoard, resetBoard, playerScore, computerScore };
 })();
 
 // Board Creation
@@ -95,12 +99,15 @@ const playerWin = (playerSelection) => {
     let computerSelection = pcPlayer.computerSelection;
     setTimeout(function(){ alert(`${playerSelection} has won!`);
     gameBoard.resetBoard()
+    playerScore();
     computerPlayer(computerSelection)},
         10);
     }
     else {
     setTimeout(function(){ alert(`${playerSelection} has won!`);
-    gameBoard.resetBoard()},
+    gameBoard.resetBoard()
+    playerScore();
+},
         10);
     }
 };
@@ -119,6 +126,12 @@ const computerWin = (computerSelection) => {
          10);
     }
 }
+
+const playerScore = (() => {
+    const score = document.querySelector('.score');
+    gameBoard.playerScore += 1;
+    score.innerText = gameBoard.playerScore;
+})
 
 // chooseYourCharacter - Allows for user to select a symbol (X or O) to play tic tac toe; handles symbol button enable/disable; handles click events for the squares so that the squares are filled with either X or O
 
