@@ -99,14 +99,14 @@ const playerWin = (playerSelection) => {
     let computerSelection = pcPlayer.computerSelection;
     setTimeout(function(){ alert(`${playerSelection} has won!`);
     gameBoard.resetBoard()
-    playerScore();
+    playerScore(playerSelection);
     computerPlayer(computerSelection)},
         10);
     }
     else {
     setTimeout(function(){ alert(`${playerSelection} has won!`);
     gameBoard.resetBoard()
-    playerScore();
+    playerScore(playerSelection);
 },
         10);
     }
@@ -117,21 +117,34 @@ const computerWin = (computerSelection) => {
     setTimeout(function(){ alert(`${computerSelection} has won!`);
     gameBoard.resetBoard()
     computerPlayer(computerSelection)
+    playerScore(computerSelection)
 },
      10);
     }
     else {
         setTimeout(function(){ alert(`${computerSelection} has won!`);
-        gameBoard.resetBoard()},
+        gameBoard.resetBoard()
+        playerScore(computerSelection)
+    },
          10);
     }
 }
 
-const playerScore = (() => {
-    const score = document.querySelector('.score');
+// Increments winner's score; Who argument = who won
+
+const playerScore = (who) => {
+    const score = document.querySelectorAll('.score');
+    const selections = chooseYourCharacter.getSelections();
+    if (who == selections.playerSelection) {
     gameBoard.playerScore += 1;
-    score.innerText = gameBoard.playerScore;
-})
+    score[0].innerText = `Player Score: ${gameBoard.playerScore}`;
+    }
+    else if (who == selections.computerSelection) {
+        gameBoard.computerScore +=1
+        score[1].innerText = `Computer Score: ${gameBoard.computerScore}`
+    }
+    else {return}
+}
 
 // chooseYourCharacter - Allows for user to select a symbol (X or O) to play tic tac toe; handles symbol button enable/disable; handles click events for the squares so that the squares are filled with either X or O
 
