@@ -72,7 +72,8 @@ const checkForWin = (board) => {
 };
 
 
-// Computer player that takes the computer selection and populates the board randomly
+// Computer player that takes the computer selection and selects a random square
+
 const computerPlayer = (computerSelection) => {
     let randomIndex;
     let board = gameBoard.getBoard();
@@ -91,7 +92,7 @@ const computerPlayer = (computerSelection) => {
     return
 }
 
-// Returns certain alerts based on who wins based on what the player has selected and computer has selected
+// Handles what happens when checkForWin returns true; Returns an alert announcing a winner; Increments winner's score; Resets Board
 
 const playerWin = (playerSelection) => {
     if (playerSelection == 'O') {
@@ -251,9 +252,9 @@ const chooseYourCharacter = (() => {
     return { getSelections, enableBtns, resetSelections, playerSelection, computerSelection, computerPlayer }
     })();
 
-    // Functionality for Reset Button
+// Functionality for Reset Button
 
-    function resetGame() {
+function resetGame() {
         gameBoard.resetBoard()
         chooseYourCharacter.enableBtns();
         chooseYourCharacter.resetSelections();
