@@ -31,7 +31,7 @@ const gameBoard = (() => {
 // Board Creation
 
 const initializeBoard = (() => {
-    let board = gameBoard.getBoard()
+    let board = gameBoard.getBoard();
     for (let i = 0; i < board.length; i++) {
         const square = document.createElement("button");
         square.classList.add('square');
@@ -96,13 +96,16 @@ const computerPlayer = (computerSelection) => {
 
 const playerWin = (playerSelection) => {
     if (playerSelection == 'O') {
+
     const pcPlayer = chooseYourCharacter.getSelections();
     let computerSelection = pcPlayer.computerSelection;
+
     setTimeout(function(){ alert(`${playerSelection} has won!`);
     gameBoard.resetBoard()
     playerScore(playerSelection);
     computerPlayer(computerSelection)},
         10);
+
     }
     else {
     setTimeout(function(){ alert(`${playerSelection} has won!`);
@@ -138,11 +141,11 @@ const playerScore = (who) => {
     const selections = chooseYourCharacter.getSelections();
     if (who == selections.playerSelection) {
     gameBoard.playerScore += 1;
-    score[0].innerText = `Player Score: ${gameBoard.playerScore}`;
+    score[0].innerText += ` ${gameBoard.playerScore}`;
     }
     else if (who == selections.computerSelection) {
         gameBoard.computerScore +=1
-        score[1].innerText = `Computer Score: ${gameBoard.computerScore}`
+        score[1].innerText = ` ${gameBoard.computerScore}`
     }
     else {return}
 }
