@@ -145,7 +145,7 @@ const playerScore = (who) => {
     }
     else if (who == selections.computerSelection) {
         gameBoard.computerScore +=1
-        score[1].innerText = ` ${gameBoard.computerScore}`
+        score[1].innerText += ` ${gameBoard.computerScore}`
     }
     else {return}
 }
