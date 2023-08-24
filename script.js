@@ -92,6 +92,13 @@ const computerPlayer = (computerSelection) => {
     return
 }
 
+
+// Function that checks for ties
+const checkForTie = (board) => {
+    const emptyStringAvailable = board.some((cell) => cell === '');
+    return emptyStringAvailable;
+}
+
 // Handles what happens when checkForWin returns true; Returns an alert announcing a winner; Increments winner's score; Resets Board
 
 const playerWin = (playerSelection) => {
@@ -203,26 +210,33 @@ const chooseYourCharacter = (() => {
         square.addEventListener('click', () => {
             if (playerSelection === undefined ) 
                 { alert('Please Select X or O --(ツ)--') }
+
             else if (square.innerText !== '')
                 { alert('Someone (or something!!) is already there!') }
+
             else
                 {
                     if (playerSelection == 'X') {
                         square.innerText = playerSelection;
                         gameBoard.updateBoard(index, playerSelection);
+
                         if (checkForWin(board)) {
                             playerWin(playerSelection)
                         }
                         else {
                             //playerSelection = 'O';
                             computerPlayer(computerSelection);
+
                             if (checkForWin(board)) {
                             computerWin(computerSelection)
                             }
-                            else {
+                            else if (!checkForTie(board)) {
+                                alert(`It's a draw!`)
+                                gameBoard.resetBoard();
                                 //playerSelection = 'O';
                                 return
                             }
+
                         }
                     }
                     else {
@@ -236,7 +250,9 @@ const chooseYourCharacter = (() => {
                             if (checkForWin(board)) {
                                 computerWin(computerSelection)
                             }
-                            else {
+                            else if (!checkForTie(board)) {
+                                alert(`It's a draw!`)
+                                gameBoard.resetBoard();
                                 //playerSelection = 'X';
                                 return
                             }
