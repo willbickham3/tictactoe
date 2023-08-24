@@ -141,11 +141,11 @@ const playerScore = (who) => {
     const selections = chooseYourCharacter.getSelections();
     if (who == selections.playerSelection) {
     gameBoard.playerScore += 1;
-    score[0].innerText += ` ${gameBoard.playerScore}`;
+    score[0].innerText = `Player 1 Score: ${gameBoard.playerScore}`;
     }
     else if (who == selections.computerSelection) {
-        gameBoard.computerScore +=1
-        score[1].innerText += ` ${gameBoard.computerScore}`
+        gameBoard.computerScore += 1
+        score[1].innerText = `Player 2 Score: ${gameBoard.computerScore}`
     }
     else {return}
 }
