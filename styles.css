@@ -20,16 +20,16 @@ body {
 }
 
 .scoreboard {
-    width: 400px;
+    width: 200px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     gap: 20px;
 }
 
 .score {
     color: lightblue;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: 900;
 }
 
@@ -44,6 +44,7 @@ body {
     border-top: none;
     border: 1px solid black;
     background-color: lightgray;
+    font-size: 2rem;
 }
 
 .selection {
@@ -52,17 +53,18 @@ body {
     background: lightblue;
     color: #b4743f;
     border: 1px solid blue;
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 1000;
 }
 
 .selection:disabled {
-    visibility: hidden;
+    display: none;
 }
 
 .reset {
-    font-size: 20px;
-    font-weight: 700;
-    border: 1px solid blue;
+    font-size: 2rem;
+    font-weight: 600;
+    border: 2px solid blue;
     border-radius: 5px;
+    padding: 0.5rem;
 }
