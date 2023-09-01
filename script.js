@@ -141,6 +141,11 @@ const computerWin = (computerSelection) => {
     }
 }
 
+const draw = () => {
+    alert(`It's a draw!`)
+    gameBoard.resetBoard();
+}
+
 // Increments winner's score; Who argument = who won
 
 const playerScore = (who) => {
@@ -231,8 +236,7 @@ const chooseYourCharacter = (() => {
                             computerWin(computerSelection)
                             }
                             else if (!checkForTie(board)) {
-                                alert(`It's a draw!`)
-                                gameBoard.resetBoard();
+                                draw();
                                 //playerSelection = 'O';
                                 return
                             }
@@ -251,8 +255,7 @@ const chooseYourCharacter = (() => {
                                 computerWin(computerSelection)
                             }
                             else if (!checkForTie(board)) {
-                                alert(`It's a draw!`)
-                                gameBoard.resetBoard();
+                                draw();
                                 //playerSelection = 'X';
                                 return
                             }
