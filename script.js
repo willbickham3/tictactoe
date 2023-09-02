@@ -141,6 +141,7 @@ const computerWin = (computerSelection) => {
     }
 }
 
+// Handles draw/ties
 const draw = () => {
     alert(`It's a draw!`)
     gameBoard.resetBoard();
